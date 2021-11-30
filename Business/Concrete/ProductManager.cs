@@ -19,7 +19,19 @@ namespace Business.Concrete
         public List<Product> GetAll()
         {
             //Bir iş sınıfı başka classları newlemez
+            //iş kodları yetkisi var mı
+            //örnk getAll metotunda filtreleme yaparak çağırmak için Expression ihtyaç duyrız
             return _productDal.GetAll();
+        }
+
+        public List<Product> GetAllByCategoryId(int id)
+        {
+            return _productDal.GetAll(p=>p.CategoryId==id);
+        }
+
+        public List<Product> GetByUnitPrice(decimal min, decimal max)
+        {
+            return _productDal.GetAll(p => p.UnitPrice >= min && p.UnitPrice <= min);
         }
     }
 }
