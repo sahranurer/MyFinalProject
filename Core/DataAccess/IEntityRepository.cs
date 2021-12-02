@@ -1,10 +1,12 @@
-﻿using Entities.Abstract;
+﻿using Core.Entities;
 using System;
 using System.Collections.Generic;
 using System.Linq.Expressions;
 using System.Text;
 
-namespace DataAccess.Abstract
+//core evrensel katmanım 
+// tüm dot.net projelerimde kullanabilirim.
+namespace Core.DataAccess
 {//generic constraint-generic kısıt where T:class
     //class : referans tip
     //IEntity : IEntity olabilir veya IEntity implemente eden bir nesne olabilir
