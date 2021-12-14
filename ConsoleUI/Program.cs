@@ -47,6 +47,9 @@ namespace ConsoleUI
             {
                 Console.WriteLine(product.ProductName+"/"+product.CategoryName);
             }
+
+           // productManager.Add();
+
         }
     }
 }
