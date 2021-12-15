@@ -19,6 +19,11 @@ namespace Business.Concrete
             _productDal = productDal;
         }
 
+        //[LogAspect] //Bir metodun önünde sonunda bir metot hata verdiğinde çalışan kod parçacıkları aop yapılır
+        //[Validate]
+        //[RemoveCache]
+        //[Transaction]
+        //[Performance]
         public IResult Add(Product product)
         {
 
@@ -38,6 +43,10 @@ namespace Business.Concrete
             //Bir iş sınıfı başka classları newlemez
             //iş kodları yetkisi var mı
             //örnk getAll metotunda filtreleme yaparak çağırmak için Expression ihtyaç duyrız
+            if (DateTime.Now.Hour == 10)
+            {
+                return new ErrorDataResult<List<Product>>(Messages.MaintenanceTime);
+            }
             return new SuccessDataResult<List<Product>> ( _productDal.GetAll(),Messages.ProductListed);
         }
 
