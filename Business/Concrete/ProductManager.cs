@@ -43,10 +43,10 @@ namespace Business.Concrete
             //Bir iş sınıfı başka classları newlemez
             //iş kodları yetkisi var mı
             //örnk getAll metotunda filtreleme yaparak çağırmak için Expression ihtyaç duyrız
-            if (DateTime.Now.Hour == 10)
-            {
-                return new ErrorDataResult<List<Product>>(Messages.MaintenanceTime);
-            }
+            //if (DateTime.Now.Hour == 10)
+            //{
+            //    return new ErrorDataResult<List<Product>>(Messages.MaintenanceTime);
+            //}
             return new SuccessDataResult<List<Product>> ( _productDal.GetAll(),Messages.ProductListed);
         }
 

@@ -32,11 +32,11 @@ namespace WebAPI
             //Autofac,Ninject,Castlewindsor,StructureMap,LightInjrct,DryInject ->  IOC Container
             //AOP
             services.AddControllers();
-            services.AddSingleton<IProductService,ProductManager>();//bana arka planda bir referance oluþtur,
-                                                                    //productservice görünce karþýlýðýnýn productmanager old görücek
-                                                                    //yani bizim için arkada newleme iþlemi yapýcak
-                                                                    //içerisinde data tutmayýnca singleten kullnýlýr
-            services.AddSingleton<IProductDal, EfProductDal>();
+            //services.AddSingleton<IProductService,ProductManager>();//bana arka planda bir referance oluþtur,
+            //                                                        //productservice görünce karþýlýðýnýn productmanager old görücek
+            //                                                        //yani bizim için arkada newleme iþlemi yapýcak
+            //                                                        //içerisinde data tutmayýnca singleten kullnýlýr
+            //services.AddSingleton<IProductDal, EfProductDal>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
