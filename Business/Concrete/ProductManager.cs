@@ -1,4 +1,5 @@
 ﻿using Business.Abstract;
+using Business.BusinessAspects.Autofac;
 using Business.CCS;
 using Business.Constans;
 using Business.ValidationRules.FluentValidation;
@@ -35,7 +36,7 @@ namespace Business.Concrete
         //[Transaction]
         //[Performance]
         [ValidationAspect(typeof(ProductValidator))]
-
+        [SecuredOperation("product.add,admin")]
         public IResult Add(Product product)
         {
            IResult result =  BusinessRules.Run(CheckIfProductNameExists(product.ProductName),
