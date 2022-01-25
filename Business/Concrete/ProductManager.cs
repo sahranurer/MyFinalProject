@@ -3,6 +3,7 @@ using Business.BusinessAspects.Autofac;
 using Business.CCS;
 using Business.Constans;
 using Business.ValidationRules.FluentValidation;
+using Core.Aspects.Autofac.Caching;
 using Core.Aspects.Autofac.Validation;
 using Core.CrossCuttingConcerns.Validation;
 using Core.Utilities.Business;
@@ -36,7 +37,8 @@ namespace Business.Concrete
         //[Transaction]
         //[Performance]
         [ValidationAspect(typeof(ProductValidator))]
-        [SecuredOperation("product.add,admin")]
+        //[SecuredOperation("product.add,admin")]
+        [CacheRemoveAspect("IProductService.Get")]
         public IResult Add(Product product)
         {
            IResult result =  BusinessRules.Run(CheckIfProductNameExists(product.ProductName),
@@ -50,6 +52,7 @@ namespace Business.Concrete
 
         }
 
+        [CacheAspect]
         public IDataResult<List<Product>> GetAll()
         {
             //Bir iş sınıfı başka classları newlemez
@@ -66,7 +69,7 @@ namespace Business.Concrete
         {
             return new SuccessDataResult<List<Product>> (_productDal.GetAll(p=>p.CategoryId==id));
         }
-
+        [CacheAspect]
         public IDataResult<Product> GetById(int productId)
         {
             return new SuccessDataResult< Product >(_productDal.Get(p => p.ProductId == productId));
@@ -87,6 +90,7 @@ namespace Business.Concrete
             return new SuccessDataResult<List<ProductDetailDto>>( _productDal.GetProductDetails());
         }
 
+        [CacheRemoveAspect("IProductService.Get")]
         public IResult Update(Product product)
         {
            
@@ -128,8 +132,10 @@ namespace Business.Concrete
             }
             return new SuccessResult();
         }
-       
 
-
+        public IResult AddTransactionalTest(Product product)
+        {
+           
+        }
     }
 }
